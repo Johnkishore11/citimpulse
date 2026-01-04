@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, User, Calendar, Clock, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -161,6 +161,14 @@ const eventsData = {
 
 const EventDetailsModal = ({ event, onClose }) => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Prevent background scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
 
     if (!event) return null;
 

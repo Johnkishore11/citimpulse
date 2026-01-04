@@ -31,13 +31,20 @@ const Home = () => (
 );
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    return !sessionStorage.getItem('introPlayed');
+  });
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('introPlayed', 'true');
+    setLoading(false);
+  };
 
   return (
     <main className="relative min-h-screen bg-navy-950 text-white selection:bg-electric-500 selection:text-navy-950 overflow-hidden cursor-none">
       <CustomCursor />
       <AnimatePresence>
-        {loading && <IntroOverlay onComplete={() => setLoading(false)} />}
+        {loading && <IntroOverlay onComplete={handleIntroComplete} />}
       </AnimatePresence>
 
       {/* Main Content */}

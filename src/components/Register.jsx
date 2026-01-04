@@ -41,7 +41,7 @@ const Register = () => {
     };
 
     return (
-        <Section id="register" className="py-24 min-h-screen flex items-center justify-center">
+        <Section id="register" className="py-24">
             <div className="w-full max-w-6xl px-4">
 
                 {/* Back Button */}

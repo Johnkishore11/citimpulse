@@ -141,6 +141,14 @@ const workshopsData = [
 const WorkshopDetailsModal = ({ workshop, onClose }) => {
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        // Prevent background scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
+
     if (!workshop) return null;
 
     const handleRegister = () => {
