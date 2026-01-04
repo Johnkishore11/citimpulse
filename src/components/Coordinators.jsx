@@ -76,7 +76,7 @@ const Coordinators = () => {
     const coordinators = [
         { name: "Harikesh", role: "STUDENT COORDINATOR", image: "/harikesh.jpg" },
         { name: "Blessy", role: "STUDENT COORDINATOR", image: "/blessy.jpg" },
-        { name: "Vishnu", role: "STUDENT COORDINATOR", image: "/vishnu.jpg" }
+        { name: "Kamal", role: "STUDENT COORDINATOR", image: "/vishnu.jpg" }
     ];
 
     return (
