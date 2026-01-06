@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, User, Building, GraduationCap, Phone, Mail, CheckCircle } from 'lucide-react';
+import { ArrowLeft, User, Building, GraduationCap, Phone, Mail, CheckCircle, Loader2 } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
+import { db } from '../firebase';
+import { EMAIL_CONFIG } from '../emailConfig';
 import Section from './Section';
 
 const Register = () => {
@@ -18,6 +22,8 @@ const Register = () => {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         // Redirect to events if no state is present (direct access)
@@ -32,13 +38,52 @@ const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would typically send data to backend
-        console.log('Registration Data:', { ...formData, eventName, category });
-        setIsSubmitted(true);
-        // Reset after delay or keep success state
+        setIsLoading(true);
+        setError('');
+
+        try {
+            // 1. Store in Firestore
+            const docRef = await addDoc(collection(db, "registrations"), {
+                ...formData,
+                eventName,
+                category,
+                registeredAt: serverTimestamp()
+            });
+
+            console.log("Document written with ID: ", docRef.id);
+
+            // 2. Send Email
+            try {
+                console.log("Sending email to:", formData.email);
+                await emailjs.send(
+                    EMAIL_CONFIG.SERVICE_ID,
+                    EMAIL_CONFIG.TEMPLATE_ID,
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        message: `Registration Details:\nEvent: ${eventName}\nCollege: ${formData.college}\nYear: ${formData.year}\nPhone: ${formData.phone}`,
+                        title: `Registration for ${eventName}`,
+                        time: new Date().toLocaleString(),
+                    },
+                    EMAIL_CONFIG.PUBLIC_KEY
+                );
+                console.log('Email sent successfully');
+            } catch (emailErr) {
+                console.error('Failed to send email:', emailErr);
+                // We don't block success if email fails, but we'll log it
+            }
+
+            setIsSubmitted(true);
+        } catch (err) {
+            console.error("Error adding document: ", err);
+            setError('Something went wrong. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
+
 
     return (
         <Section id="register" className="py-24">
@@ -166,10 +211,19 @@ const Register = () => {
                                     {/* Submit Button */}
                                     <button
                                         type="submit"
-                                        className="w-full py-4 mt-8 bg-gradient-to-r from-electric-600 to-electric-400 text-navy-950 font-black text-lg uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_#2dd4bf] hover:scale-[1.02] transition-all"
+                                        disabled={isLoading}
+                                        className="w-full py-4 mt-8 bg-gradient-to-r from-electric-600 to-electric-400 text-navy-950 font-black text-lg uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_#2dd4bf] hover:scale-[1.02] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                     >
-                                        Complete Registration
+                                        {isLoading ? (
+                                            <>
+                                                <Loader2 className="animate-spin" /> Processing...
+                                            </>
+                                        ) : (
+                                            'Complete Registration'
+                                        )}
                                     </button>
+
+                                    {error && <p className="text-red-500 text-center mt-4 font-bold">{error}</p>}
                                 </form>
                             </>
                         ) : (
