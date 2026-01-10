@@ -72,7 +72,6 @@ const Register = () => {
                 console.log('Email sent successfully');
             } catch (emailErr) {
                 console.error('Failed to send email:', emailErr);
-                // We don't block success if email fails, but we'll log it
             }
 
             setIsSubmitted(true);

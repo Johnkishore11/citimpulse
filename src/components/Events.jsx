@@ -1,38 +1,89 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Phone, User, Calendar, Clock, MapPin } from 'lucide-react';
+import { X, Phone, User, Calendar, Clock, MapPin, Globe, Camera, PenTool, Video, Cpu, Zap, Lock, FileCode, Terminal } from 'lucide-react'; // Added icons
 import { useNavigate } from 'react-router-dom';
 import Section from './Section';
 
 // Import Event Images
 import paperPres from '../assets/images/paper presentation.png';
-import projectPres from '../assets/images/imageposter.png'; // Using poster image for Project Pres
+import projectPres from '../assets/images/imageposter.png';
 import circuitDebug from '../assets/images/imagecircuit.png';
 import wiring from '../assets/images/imagewiring.png';
 import connections from '../assets/images/imageconnection.png';
-import techQuiz from '../assets/images/imagequiz.png'; // Using quiz image
-import ecad from '../assets/images/cad.avif'; // Need a placeholder or reuse, trying to find one. 
-// If `cad.avif` exists? I saw it in file list? Yes `cad.avif` exists!
-import pubg from '../assets/images/imagepubg.png';
-import photo from '../assets/images/imagephotpo.png';
-import uiux from '../assets/images/imageuiux.png';
-import videoEdit from '../assets/images/imagevideo.png';
-import debate from '../assets/images/imagedebate.png';
-import meme from '../assets/images/imagememe.png';
+import techQuiz from '../assets/images/imagequiz.png';
+import ecad from '../assets/images/cad.avif';
+import photo from '../assets/images/imagephotpo.png'; // For Photography
+import posterDesign from '../assets/images/imageposter.png'; // Reusing for Poster Design
+import aiVideo from '../assets/images/imagevideo.png'; // Reusing for AI Video
+import lastLogin from '../assets/images/imageentre.png'; // Placeholder
+import electrolink from '../assets/images/imageiot.png'; // Placeholder
+import blackout from '../assets/images/imagedebate.png'; // Placeholder
 
-const eventsData = {
+export const eventsData = {
     technical: [
         {
             id: 1,
+            title: 'Circuit Debugging',
+            image: circuitDebug,
+            desc: 'Find the faults and fix the circuits.',
+            details: 'Test your electronics skills by identifying and fixing faults in complex circuits within a time limit. A challenge for the sharpest minds in circuitry.',
+            coordinators: [
+                { name: 'Madan Prakash', contact: '9840215374' },
+                { name: 'Yoga Prasanna', contact: '9444858213' },
+                { name: 'Sai Sundar', contact: '9360245815' }
+            ],
+            rules: [
+                'Individual participation or team of 2.',
+                'Debugging tools will be provided.',
+                'Time limit: 45 minutes.',
+                'Judges decision is final.'
+            ]
+        },
+        {
+            id: 2,
+            title: 'Wiring Challenge',
+            image: wiring,
+            desc: 'Master the art of electrical connections.',
+            details: 'A competition to test your speed and accuracy in electrical wiring and circuit connections. Precision and safety are key.',
+            coordinators: [
+                { name: 'Divalny', contact: '8072513973' },
+                { name: 'Rajameena', contact: '7397318090' },
+                { name: 'Sai SUNDAR', contact: '9360245815' }
+            ],
+            rules: [
+                'Team of 2 members.',
+                'Safety gear (gloves) must be worn.',
+                'Circuit diagram will be provided.',
+                'Judges decision is final.'
+            ]
+        },
+        {
+            id: 3,
+            title: 'Technical Quiz',
+            image: techQuiz,
+            desc: 'Test your technical knowledge.',
+            details: 'Battle of brains! Answer technical questions and prove your expertise in various engineering domains. From basics to advanced concepts.',
+            coordinators: [
+                { name: 'Ashwin Singh', contact: '91763 83300' },
+                { name: 'Nithish', contact: '63834 79068' },
+                { name: 'Vimal Deep', contact: '9629791556' }
+            ],
+            rules: [
+                'Team of 2 members.',
+                'No electronic gadgets allowed.',
+                'Quiz specific rules will be announced on spot.',
+                'Judges decision is final.'
+            ]
+        },
+        {
+            id: 4,
             title: 'Paper Presentation',
             image: paperPres,
             desc: 'Showcase your innovative ideas and research.',
-            details: 'Present your technical papers on cutting-edge technologies. A platform to share knowledge and innovations.',
+            details: 'Present your technical papers on cutting-edge technologies. A platform to share knowledge, innovations, and research findings with a panel of experts.',
             coordinators: [
                 { name: 'Jerauld Alwin', contact: '9498350881' },
                 { name: 'Amirtha', contact: '7871003979' },
-                { name: 'Sushmitha', contact: '9445913824' },
-                { name: 'Roseni', contact: '7305108002' },
                 { name: 'Alfred John', contact: '8610933220' }
             ],
             rules: [
@@ -43,16 +94,12 @@ const eventsData = {
             ]
         },
         {
-            id: 2,
+            id: 5,
             title: 'Project Presentation',
             image: projectPres,
             desc: 'Visualise your technical concepts creatively.',
-            details: 'Demonstrate your engineering projects and prototypes. Impress the judges with your practical implementation.',
+            details: 'Demonstrate your engineering projects and prototypes. Impress the judges with your practical implementation and innovative solutions.',
             coordinators: [
-                { name: 'Kamaleshwaran', contact: '' },
-                { name: 'Vishal Rajju', contact: '' },
-                { name: 'Rohit K S', contact: '' },
-                { name: 'Theeran', contact: '' },
                 { name: 'Kavin Aravind', contact: '6382863773' },
                 { name: 'Sudharsan', contact: '8050024271' }
             ],
@@ -64,74 +111,11 @@ const eventsData = {
             ]
         },
         {
-            id: 3,
-            title: 'Circuit Debugging',
-            image: circuitDebug,
-            desc: 'Find the faults and fix the circuits.',
-            details: 'Test your electronics skills by identifying and fixing faults in complex circuits within a time limit.',
-            coordinators: [
-                { name: 'Madan Prakash', contact: '9840215374' },
-                { name: 'Yoga Prasanna', contact: '9444858213' },
-                { name: 'Rasikka', contact: '' },
-                { name: 'Pragadhi', contact: '' },
-                { name: 'Sai Sundar', contact: '9360245815' }
-            ],
-            rules: [
-                'Individual participation or team of 2.',
-                'Debugging tools will be provided.',
-                'Time limit: 45 minutes.',
-                'Judges decision is final.'
-            ]
-        },
-        {
-            id: 4,
-            title: 'Wiring Wits',
-            image: wiring,
-            desc: 'Master the art of electrical connections.',
-            details: 'A competition to test your speed and accuracy in electrical wiring and circuit connections.',
-            coordinators: [
-                { name: 'Divalny', contact: '8072513973' },
-                { name: 'Rajameena', contact: '7397318090' },
-                { name: 'Dharshini', contact: '6383345731' },
-                { name: 'Kaushik', contact: '' },
-                { name: 'Suganya', contact: '' },
-                { name: 'Sai SUNDAR', contact: '9360245815' }
-            ],
-            rules: [
-                'Team of 2 members.',
-                'Safety gear (gloves) must be worn.',
-                'Circuit diagram will be provided.',
-                'Judges decision is final.'
-            ]
-        },
-        {
-            id: 5,
-            title: 'Tech Quiz',
-            image: techQuiz,
-            desc: 'Test your technical knowledge.',
-            details: 'Battle of brains! Answer technical questions and prove your expertise in various engineering domains.',
-            coordinators: [
-                { name: 'Ashwin Singh', contact: '91763 83300' },
-                { name: 'Nithish', contact: '63834 79068' },
-                { name: 'Vigneshwar', contact: '' },
-                { name: 'Rakesh', contact: '' },
-                { name: 'Yeswanth R', contact: '' },
-                { name: 'Vimal Deep', contact: '9629791556' },
-                { name: 'Kihore', contact: '6369902036' }
-            ],
-            rules: [
-                'Team of 2 members.',
-                'No electronic gadgets allowed.',
-                'Quiz specific rules will be announced on spot.',
-                'Judges decision is final.'
-            ]
-        },
-        {
             id: 6,
             title: 'E-Cadathon',
             image: ecad,
             desc: 'Design complex electrical systems.',
-            details: 'Showcase your CAD skills by designing electrical layouts and systems efficiently.',
+            details: 'Showcase your CAD skills by designing electrical layouts and systems efficiently using industry-standard software.',
             coordinators: [
                 { name: 'Bragadeeshwaran', contact: '90428 51602' }
             ],
@@ -144,26 +128,95 @@ const eventsData = {
         },
         {
             id: 7,
-            title: 'Connections',
-            image: connections,
-            desc: 'Connect the dots in this technical puzzle.',
-            details: 'Identify technical terms and concepts by connecting related images and clues.',
+            title: 'Last Login',
+            image: lastLogin,
+            desc: 'Unlock the digital mysteries.',
+            details: 'Hosted by Club Celestial. A challenge of logic, coding, and problem-solving. Can you crack the code before time runs out?',
+            club: 'Club Celestial',
             coordinators: [],
             rules: [
                 'Team of 2 members.',
-                'Preliminary round will be conducted.',
-                'Final round on stage.',
+                'Laptop required.',
                 'Judges decision is final.'
             ]
         },
+        {
+            id: 8,
+            title: 'Electrolink',
+            image: electrolink,
+            desc: 'Forge the connections.',
+            details: 'A circuit design and linking challenge. Understand the flow, connect the components, and make the system live.',
+            coordinators: [],
+            rules: [
+                'Team of 2 members.',
+                'Components provided.',
+                'Judges decision is final.'
+            ]
+        },
+        {
+            id: 9,
+            title: 'Blackout Files',
+            image: blackout,
+            desc: 'Decode the hidden data.',
+            details: 'A mystery solving event where technical clues lead to the solution. Analyze the data and find the truth in the blackout.',
+            coordinators: [],
+            rules: [
+                'Team of 2-3 members.',
+                'Critical thinking required.',
+                'Judges decision is final.'
+            ]
+        }
+    ],
+    online: [
+        {
+            id: 101,
+            title: 'Photography',
+            image: photo,
+            desc: 'Capture the moment.',
+            details: 'Showcase your perspective through the lens. Theme-based photography contest where creativity meets composition.',
+            coordinators: [],
+            rules: [
+                'Individual participation.',
+                'Original photos only.',
+                'No heavy editing allowed.',
+                'Submit before deadline.'
+            ]
+        },
+        {
+            id: 102,
+            title: 'Poster Designing',
+            image: posterDesign,
+            desc: 'Design with impact.',
+            details: 'Create compelling visual posters. Combine art and information to convey a powerful message.',
+            coordinators: [],
+            rules: [
+                'Individual participation.',
+                'Original designs only.',
+                'Submit in high resolution.',
+                'Judges decision is final.'
+            ]
+        },
+        {
+            id: 103,
+            title: 'AI Video Creation',
+            image: aiVideo,
+            desc: 'Generate the future.',
+            details: 'Create amazing videos using AI tools. Push the boundaries of creativity with artificial intelligence.',
+            coordinators: [],
+            rules: [
+                'Individual participation.',
+                'AI tools allowed.',
+                'Max duration: 2 minutes.',
+                'Judges decision is final.'
+            ]
+        }
     ]
 };
 
-const EventDetailsModal = ({ event, onClose }) => {
+export const EventDetailsModal = ({ event, onClose }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Prevent background scrolling when modal is open
         document.body.style.overflow = 'hidden';
         return () => {
             document.body.style.overflow = 'unset';
@@ -177,7 +230,7 @@ const EventDetailsModal = ({ event, onClose }) => {
             state: {
                 eventName: event.title,
                 category: 'Event',
-                rules: event.rules // Pass rules here
+                rules: event.rules
             }
         });
     };
@@ -197,7 +250,6 @@ const EventDetailsModal = ({ event, onClose }) => {
                 className="relative w-full max-w-4xl bg-navy-900 border border-electric-500/30 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(45,212,191,0.2)] flex flex-col md:flex-row max-h-[90vh]"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Close Button */}
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/50 text-white hover:bg-electric-500 hover:text-navy-950 transition-colors"
@@ -205,7 +257,6 @@ const EventDetailsModal = ({ event, onClose }) => {
                     <X size={24} />
                 </button>
 
-                {/* Image Section */}
                 <div className="w-full md:w-2/5 h-64 md:h-auto relative">
                     <img
                         src={event.image}
@@ -215,17 +266,21 @@ const EventDetailsModal = ({ event, onClose }) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent md:bg-gradient-to-r" />
                 </div>
 
-                {/* Content Section */}
                 <div className="w-full md:w-3/5 p-8 overflow-y-auto">
                     <h2 className="text-3xl md:text-4xl font-black text-white mb-2 font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-electric-300 to-white">
                         {event.title}
                     </h2>
 
+                    {event.club && (
+                        <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-navy-950 bg-electric-400 rounded-full">
+                            {event.club}
+                        </span>
+                    )}
+
                     <p className="text-gray-300 mb-6 leading-relaxed">
                         {event.details || event.desc}
                     </p>
 
-                    {/* Basic Info Grid */}
                     <div className="grid grid-cols-2 gap-4 mb-8">
                         <div className="flex items-center gap-2 text-gray-400">
                             <Calendar className="text-electric-400" size={18} />
@@ -237,11 +292,10 @@ const EventDetailsModal = ({ event, onClose }) => {
                         </div>
                         <div className="flex items-center gap-2 text-gray-400 col-span-2">
                             <MapPin className="text-electric-400" size={18} />
-                            <span>CIT Campus</span>
+                            <span>CIT Campus{event.id > 100 ? ' (Online)' : ''}</span>
                         </div>
                     </div>
 
-                    {/* Coordinators */}
                     {event.coordinators && event.coordinators.length > 0 && (
                         <div className="mb-8">
                             <h3 className="text-lg font-bold text-electric-300 mb-4 flex items-center gap-2">
@@ -262,7 +316,6 @@ const EventDetailsModal = ({ event, onClose }) => {
                         </div>
                     )}
 
-                    {/* Register Button */}
                     <button
                         onClick={handleRegister}
                         className="w-full py-4 bg-gradient-to-r from-electric-600 to-electric-400 text-navy-950 font-black text-lg uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_#2dd4bf] hover:scale-[1.02] transition-all"
@@ -275,50 +328,67 @@ const EventDetailsModal = ({ event, onClose }) => {
     );
 };
 
-const EventCard = ({ event, onClick }) => (
-    <motion.div
-        className="group relative overflow-hidden rounded-xl bg-navy-900/40 border border-electric-500/20 shadow-lg hover:shadow-[0_0_30px_rgba(45,212,191,0.3)] transition-all duration-300 cursor-pointer"
-        whileHover={{ y: -10, scale: 1.02 }}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        onClick={() => onClick(event)}
-    >
-        {/* Image Container */}
-        <div className="h-48 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent z-10 opacity-60 group-hover:opacity-30 transition-opacity" />
-            <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-            />
-        </div>
+export const EventCard = ({ event, onClick }) => {
+    // Select icon based on event category or title keywords (simplified visual cue)
+    const getTypeIcon = () => {
+        if (event.id > 100) return <Globe size={16} />;
+        return <Cpu size={16} />;
+    };
 
-        {/* Content */}
-        <div className="p-6 relative z-20">
-            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-electric-300 transition-colors duration-300 font-orbitron">
-                {event.title}
-            </h3>
-            <p className="text-gray-400 text-sm mb-4 line-clamp-2 group-hover:text-gray-300">
-                {event.desc}
-            </p>
-            <span className="text-xs font-bold tracking-wider text-electric-400 uppercase border border-electric-500/30 px-3 py-1 rounded group-hover:bg-electric-500 group-hover:text-navy-950 transition-all">
-                View Details
-            </span>
-        </div>
+    return (
+        <motion.div
+            className="group relative overflow-hidden rounded-xl bg-navy-900/40 border border-electric-500/20 shadow-lg hover:shadow-[0_0_30px_rgba(45,212,191,0.3)] transition-all duration-300 cursor-pointer"
+            whileHover={{ y: -10, scale: 1.02 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onClick={() => onClick(event)}
+        >
+            <div className="h-48 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent z-10 opacity-60 group-hover:opacity-30 transition-opacity" />
+                <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-md p-2 rounded-full text-electric-400 border border-electric-500/30">
+                    {getTypeIcon()}
+                </div>
+            </div>
 
-        {/* Animated Border */}
-        <div className="absolute inset-0 border border-transparent group-hover:border-electric-500/50 rounded-xl transition-all duration-300 pointer-events-none" />
-    </motion.div>
-);
+            <div className="p-6 relative z-20">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-electric-300 transition-colors duration-300 font-orbitron">
+                    {event.title}
+                </h3>
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2 group-hover:text-gray-300">
+                    {event.desc}
+                </p>
+                <div className="flex justify-between items-center mt-4">
+                    <span className="text-xs font-bold tracking-wider text-electric-400 uppercase border border-electric-500/30 px-3 py-1 rounded group-hover:bg-electric-500 group-hover:text-navy-950 transition-all">
+                        View Details
+                    </span>
+                    {event.club && (
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest">{event.club}</span>
+                    )}
+                </div>
+            </div>
+
+            <div className="absolute inset-0 border border-transparent group-hover:border-electric-500/50 rounded-xl transition-all duration-300 pointer-events-none" />
+        </motion.div>
+    );
+};
 
 const Events = ({ previewMode = false }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const displayedEvents = previewMode ? eventsData.technical.slice(0, 3) : eventsData.technical;
+    const [activeTab, setActiveTab] = useState('technical'); // 'technical' or 'online'
+
+    const displayedEvents = previewMode
+        ? eventsData.technical.slice(0, 3)
+        : eventsData[activeTab];
 
     return (
         <Section id="events" className="py-24">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -329,17 +399,38 @@ const Events = ({ previewMode = false }) => {
                 <div className="h-1 w-24 bg-electric-500 mx-auto rounded-full shadow-[0_0_20px_#2dd4bf]" />
             </div>
 
-            {/* Tabs */}
-            {/* Removed Tab buttons UI */}
+            {/* Custom Tabs */}
+            {!previewMode && (
+                <div className="flex justify-center mb-12">
+                    <div className="flex bg-navy-900/50 p-1 rounded-full border border-white/10 backdrop-blur-sm">
+                        <button
+                            onClick={() => setActiveTab('technical')}
+                            className={`px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeTab === 'technical'
+                                ? 'bg-electric-500 text-navy-950 shadow-[0_0_15px_rgba(45,212,191,0.4)]'
+                                : 'text-gray-400 hover:text-white'
+                                }`}
+                        >
+                            Technical
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('online')}
+                            className={`px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeTab === 'online'
+                                ? 'bg-electric-500 text-navy-950 shadow-[0_0_15px_rgba(45,212,191,0.4)]'
+                                : 'text-gray-400 hover:text-white'
+                                }`}
+                        >
+                            Online
+                        </button>
+                    </div>
+                </div>
+            )}
 
-            {/* Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {displayedEvents.map((event) => (
                     <EventCard key={event.id} event={event} onClick={setSelectedEvent} />
                 ))}
             </div>
 
-            {/* View More Button */}
             {previewMode && (
                 <div className="mt-12 text-center">
                     <button
@@ -351,7 +442,6 @@ const Events = ({ previewMode = false }) => {
                 </div>
             )}
 
-            {/* Modal */}
             <AnimatePresence>
                 {selectedEvent && (
                     <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Phone, User, Calendar, Clock, MapPin, Laptop, Cpu, Zap, PenTool } from 'lucide-react';
+import { X, Phone, User, Calendar, Clock, MapPin, Laptop, Cpu, Zap, PenTool, Rocket, Cloud, Video } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Section from './Section';
 
@@ -9,10 +9,10 @@ import iot from '../assets/images/imageiot.png';
 import ev from '../assets/images/imageev.png';
 import renewable from '../assets/images/imagerenewable.png';
 import kuka from '../assets/images/imagekuka.png';
-import entrepreneurship from '../assets/images/imageentre.png'; // Placeholder for Celestial/Callisto
-import startup from '../assets/images/imagestartuppitch.png'; // Placeholder
+import entrepreneurship from '../assets/images/imageentre.png'; // Reusing for MicroSaaS
+import astronomy from '../assets/images/imageentre.png'; // Reusing for Astronomy (can change if better img found)
 import videoEdit from '../assets/images/imagevideo.png';
-import uiux from '../assets/images/imageuiux.png';
+import startup from '../assets/images/imagestartuppitch.png'; // Alternative for MicroSaaS
 
 const workshopsData = [
     {
@@ -68,11 +68,11 @@ const workshopsData = [
     },
     {
         id: 4,
-        title: 'Code to Cloud: ESP Programming',
+        title: 'Code to Cloud: ESP Workshop',
         image: iot,
         desc: 'From hardware to the cloud - a complete IoT journey.',
-        details: 'A comprehensive workshop on IoT using ESP modules. Learn to program microcontrollers and connect them to cloud platforms for real-time data monitoring.',
-        club: 'Club Asymmetric',
+        details: ' Hosted by Club Assymetrics. A comprehensive workshop on IoT using ESP modules. Learn to program microcontrollers and connect them to cloud platforms for real-time data monitoring.',
+        club: 'Club Assymetrics',
         coordinators: [
             { name: 'Jaison Binu Frank', contact: '' },
             { name: 'Shivani Sri', contact: '' },
@@ -86,53 +86,41 @@ const workshopsData = [
     },
     {
         id: 5,
-        title: 'Celestial',
-        image: entrepreneurship,
-        desc: 'Explore the mysteries of the universe and space tech.',
-        details: 'A workshop dedicated to space technology, astronomy, and the engineering challenges of space exploration.',
+        title: 'Astronomy in Action',
+        image: astronomy,
+        desc: 'Explore the boundless universe.',
+        details: 'Hosted by Club Callisto. Dive into the world of astronomy. Learn about celestial mechanics, telescopes, and the mysteries of the deep space.',
+        club: 'Club Callisto',
         coordinators: [],
         rules: [
-            'Interest in astronomy required.',
+            'Interest in space science required.',
             'Interactive session.',
             'Certificates provided upon completion.'
         ]
     },
     {
         id: 6,
-        title: 'Callisto',
+        title: 'Building a MicroSaaS',
         image: startup,
-        desc: 'Unlocking new horizons in technology.',
-        details: 'An advanced technology workshop focusing on emerging trends and future innovations.',
-        coordinators: [], // No data provided
+        desc: 'Turn your idea into a profitable product.',
+        details: 'Learn the roadmap to building a MicroSaaS. From ideation and validation to MVP development and scaling. A must-attend for aspiring entrepreneurs.',
+        coordinators: [],
         rules: [
-            'Open to all technology enthusiasts.',
-            'Seminar style session.',
+            'Laptop required.',
+            'No prior business knowledge needed.',
             'Certificates provided upon completion.'
         ]
     },
     {
         id: 7,
-        title: 'Video Editing',
+        title: 'Video Editing Workshop',
         image: videoEdit,
         desc: 'Edit and create stunning video content.',
-        details: 'Master professional video editing software. Learn cutting, color grading, and effects to create cinematic content.',
-        coordinators: [], // No data provided
+        details: 'Master professional video editing software. Learn cutting, color grading, and effects to create cinematic content like a pro.',
+        coordinators: [],
         rules: [
             'Laptop with Adobe Premiere/Davinci Resolve suggested.',
             'Basic editing knowledge is a plus.',
-            'Certificates provided upon completion.'
-        ]
-    },
-    {
-        id: 8,
-        title: 'Graphic Designing',
-        image: uiux,
-        desc: 'Create visual concepts that inspire and inform.',
-        details: 'Learn the principles of design, color theory, and typography. Hands-on training with industry-standard design tools.',
-        coordinators: [], // No data provided
-        rules: [
-            'Laptop with Photoshop/Illustrator suggested.',
-            'Design portfolio review included.',
             'Certificates provided upon completion.'
         ]
     }
