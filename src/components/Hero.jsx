@@ -382,8 +382,8 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.h2
-                    initial={{ opacity: 0, letterSpacing: "0.2em" }}
-                    animate={{ opacity: 1, letterSpacing: "0.5em" }}
+                    initial={{ opacity: 0, letterSpacing: "0.05em" }}
+                    animate={{ opacity: 1, letterSpacing: "0.26em" }}
                     transition={{ delay: 3, duration: 1 }}
                     className="mt-6 text-xl md:text-3xl font-bold text-electric-300 uppercase glow-sm drop-shadow-md bg-black/30 backdrop-blur-sm py-1 px-4 inline-block rounded-lg border border-electric-500/20"
                 >

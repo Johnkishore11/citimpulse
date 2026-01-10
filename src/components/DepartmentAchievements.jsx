@@ -140,7 +140,7 @@ const DepartmentAchievements = () => {
                             <img
                                 src={item.image}
                                 alt={`Achievement ${item.id}`}
-                                className="w-full h-full object-cover pointer-events-none transition-all duration-500 group-hover:brightness-25 group-hover:scale-110"
+                                className="w-full h-full object-fit pointer-events-none transition-all duration-500 group-hover:brightness-25 group-hover:scale-110"
                             />
 
                             {/* Overlay Content */}

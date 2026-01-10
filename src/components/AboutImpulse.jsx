@@ -2,13 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Section from './Section';
 
-import about1 from '../assets/images/about1.JPG';
-import about2 from '../assets/images/about2.JPG';
-import about3 from '../assets/images/about3.JPG';
-import about4 from '../assets/images/about4.JPG';
-import about5 from '../assets/images/about5.JPG';
+import about1 from '../assets/images/st1.JPG';
+import about2 from '../assets/images/st2.JPG';
+import about3 from '../assets/images/st3.JPG';
+import about4 from '../assets/images/staf3.JPG';
+import about5 from '../assets/images/staff1.JPG';
+import about6 from '../assets/images/price1.JPG';
+import about7 from '../assets/images/audi.JPG';
+import about8 from '../assets/images/gr1.JPG';
+import about9 from '../assets/images/gr2.JPG';
+import about10 from '../assets/images/staff2.JPG'
 
-const images = [about1, about2, about3, about4, about5];
+
+const images = [about1, about2, about3, about4, about5, about6, about7, about8, about9, about10];
 
 const AboutImpulse = () => {
     return (
@@ -33,7 +39,7 @@ const AboutImpulse = () => {
                         Our Unique Symposium Name "IMPULSE" has been originated from "Lightning Impulse" which can be described in Electrical terms as a High voltage impulse that occurs over short times. Similarly our Symposium is a Milestone Event that occurs in a short span of time.
                     </p>
                     <blockquote className="border-l-4 border-electric-400 pl-4 italic text-gray-400 my-6 bg-navy-900/40 p-4 rounded-r-lg">
-                        "Join us to experience the surge of technology and innovation!"
+                        "Join us an experience the surge of technology and innovation!"
                     </blockquote>
                 </div>
             </motion.div>

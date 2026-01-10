@@ -117,7 +117,7 @@ export const eventsData = {
             desc: 'Design complex electrical systems.',
             details: 'Showcase your CAD skills by designing electrical layouts and systems efficiently using industry-standard software.',
             coordinators: [
-                { name: 'Bragadeeshwaran', contact: '90428 51602' }
+                { name: 'Bragadeeshwaran', contact: '9042851602' }
             ],
             rules: [
                 'Individual participation.',
@@ -301,9 +301,9 @@ export const EventDetailsModal = ({ event, onClose }) => {
                             <h3 className="text-lg font-bold text-electric-300 mb-4 flex items-center gap-2">
                                 <User size={20} /> Event Coordinators
                             </h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-[calc(100%+30px)] -ml-[15px]">
                                 {event.coordinators.map((coord, idx) => (
-                                    <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex justify-between items-center hover:border-electric-500/30 transition-colors">
+                                    <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex justify-between items-center hover:border-electric-600/30 transition-colors">
                                         <span className="font-medium text-gray-200">{coord.name}</span>
                                         {coord.contact && (
                                             <a href={`tel:${coord.contact} `} className="flex items-center gap-1 text-xs text-electric-400 hover:text-electric-300 bg-electric-500/10 px-2 py-1 rounded">
