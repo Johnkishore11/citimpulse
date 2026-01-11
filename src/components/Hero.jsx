@@ -11,15 +11,18 @@ const LightningBolt = ({ style, className }) => (
         xmlns="http://www.w3.org/2000/svg"
         className={`absolute drop-shadow-[0_0_15px_rgba(45,212,191,0.8)] ${className}`}
         style={style}
-        initial={{ opacity: 0, pathLength: 0 }}
-        animate={{ opacity: [0, 1, 0], pathLength: [0, 1, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.3, ease: "linear" }}
     >
-        <path
+        <motion.path
             d="M12 0L0 50H12L0 100H12L0 150"
             stroke="cyan"
             strokeWidth="2"
             strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: [0, 1, 1] }}
+            transition={{ duration: 0.3, ease: "linear" }}
         />
     </motion.svg>
 );

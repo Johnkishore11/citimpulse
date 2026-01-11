@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Mail, Zap } from 'lucide-react';
+import { Zap, Phone } from 'lucide-react';
 import Section from './Section';
+import blessie from '../assets/images/Blessie-pic.png'
+import harikesh from "../assets/images/Harikesh-pic.jpeg"
+import kamal from "../assets/images/kamal-pic.jpg"
 
-const CoordinatorCard = ({ name, role, image, delay }) => (
+const CoordinatorCard = ({ name, role, image, delay, number }) => (
     <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -18,19 +21,22 @@ const CoordinatorCard = ({ name, role, image, delay }) => (
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-electric-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
             {/* Image Container with "Energy Ring" */}
-            <div className="relative mb-8">
+            <div className="relative mb-9">
                 {/* Intense Outer Glow on Hover */}
                 <div className="absolute -inset-4 rounded-full bg-electric-500/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <motion.div
-                    className="relative w-56 h-56 rounded-full p-1.5 bg-gradient-to-b from-electric-400 via-electric-600 to-navy-900 shadow-[0_0_30px_rgba(45,212,191,0.5)] overflow-hidden"
+                    className="relative w-56 h-56 rounded-full p-2 bg-gradient-to-b from-electric-400 via-electric-600 to-navy-900 shadow-[0_0_30px_rgba(45,212,191,0.5)] overflow-hidden"
                     whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0] }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                    transition={{
+                        scale: { type: "spring", stiffness: 300, damping: 10 },
+                        rotate: { duration: 0.4, ease: "easeInOut" }
+                    }}
                 >
                     <img
                         src={image}
                         alt={name}
-                        className="w-full h-full object-cover rounded-full filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                        className={name === "Kamalanathan" ? "w-full h-full object-cover rounded-full filter grayscale group-hover:grayscale-0 transition-all duration-700" : "w-full h-full object-fit rounded-full filter grayscale group-hover:grayscale-0 transition-all duration-700"}
                     />
                 </motion.div>
 
@@ -56,13 +62,9 @@ const CoordinatorCard = ({ name, role, image, delay }) => (
                 </p>
 
                 {/* Social Actions (Scale up) */}
-                <div className="flex justify-center space-x-6">
-                    <button className="p-3 rounded-full bg-navy-800 hover:bg-electric-500 hover:text-navy-950 transition-all duration-300 border border-white/10 hover:scale-110 hover:shadow-[0_0_20px_#2dd4bf]">
-                        <Linkedin size={24} />
-                    </button>
-                    <button className="p-3 rounded-full bg-navy-800 hover:bg-electric-500 hover:text-navy-950 transition-all duration-300 border border-white/10 hover:scale-110 hover:shadow-[0_0_20px_#2dd4bf]">
-                        <Mail size={24} />
-                    </button>
+                <div className="bg-white/5 border border-white/10 rounded-lg p-3 flex justify-between items-center hover:border-electric-700/30 transition-colors">
+                    <p>Contact</p>
+                    <p className='flex items-center gap-1 text-xs text-electric-400 hover:text-electric-300 bg-electric-500/10 px-2 py-1 rounded'> <Phone size={12} /> {number}</p>
                 </div>
             </div>
 
@@ -74,9 +76,10 @@ const CoordinatorCard = ({ name, role, image, delay }) => (
 
 const Coordinators = () => {
     const coordinators = [
-        { name: "Harikesh", role: "STUDENT COORDINATOR", image: "/harikesh.jpg" },
-        { name: "Blessy", role: "STUDENT COORDINATOR", image: "/blessy.jpg" },
-        { name: "Kamal", role: "STUDENT COORDINATOR", image: "/vishnu.jpg" }
+        { name: "Harikesh", role: "STUDENT COORDINATOR", image: harikesh, number: "63803 25509" },
+        { name: "Kamalanathan", role: "STUDENT COORDINATOR", image: kamal, number: "79048 49032" },
+        { name: "Blessie Pearlyn", role: "STUDENT COORDINATOR", image: blessie, number: "63740 85148" }
+
     ];
 
     return (
@@ -104,6 +107,7 @@ const Coordinators = () => {
                         role={coord.role}
                         image={coord.image}
                         delay={index * 0.2}
+                        number={coord.number}
                     />
                 ))}
             </div>
