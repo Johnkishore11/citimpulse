@@ -39,7 +39,7 @@ const workshopsData = [
         desc: 'Dive into the future of automotive technology.',
         details: 'Explore the technology behind Electric Vehicles (EVs). Understand battery management systems, motor control, and EV architecture.',
         coordinators: [
-            { name: 'Anto Jeba Infant', contact: '' },
+            { name: 'Anto Jeba Infant', contact: '6380537819' },
             { name: 'Sanjeeve', contact: '' },
             { name: 'Yeswanth K', contact: '' }
         ],
@@ -104,7 +104,7 @@ const workshopsData = [
         image: startup,
         desc: 'Turn your idea into a profitable product.',
         details: 'Learn the roadmap to building a MicroSaaS. From ideation and validation to MVP development and scaling. A must-attend for aspiring entrepreneurs.',
-        coordinators: [],
+        coordinators: [{ name: "Musha Ahamed", contact: "9092255074" }],
         rules: [
             'Laptop required.',
             'No prior business knowledge needed.',
@@ -223,7 +223,7 @@ const WorkshopDetailsModal = ({ workshop, onClose }) => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {workshop.coordinators.map((coord, idx) => (
                                     <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex justify-between items-center hover:border-electric-500/30 transition-colors">
-                                        <span className="font-medium text-gray-200">{coord.name}</span>
+                                        <span style={{ fontSize: "15px" }} className=" text-gray-200">{coord.name}</span>
                                         {coord.contact && (
                                             <a href={`tel:${coord.contact} `} className="flex items-center gap-1 text-xs text-electric-400 hover:text-electric-300 bg-electric-500/10 px-2 py-1 rounded">
                                                 <Phone size={12} /> {coord.contact}

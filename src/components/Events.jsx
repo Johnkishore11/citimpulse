@@ -28,9 +28,8 @@ export const eventsData = {
             desc: 'Find the faults and fix the circuits.',
             details: 'Test your electronics skills by identifying and fixing faults in complex circuits within a time limit. A challenge for the sharpest minds in circuitry.',
             coordinators: [
-                { name: 'Madan Prakash', contact: '9840215374' },
-                { name: 'Yoga Prasanna', contact: '9444858213' },
-                { name: 'Sai Sundar', contact: '9360245815' }
+                { name: 'Madan Prakash K S', contact: '98402 15374' },
+                { name: 'Pragadhiswari P', contact: '94448 58213' },
             ],
             rules: [
                 'Individual participation or team of 2.',
@@ -46,9 +45,8 @@ export const eventsData = {
             desc: 'Master the art of electrical connections.',
             details: 'A competition to test your speed and accuracy in electrical wiring and circuit connections. Precision and safety are key.',
             coordinators: [
-                { name: 'Divalny', contact: '8072513973' },
-                { name: 'Rajameena', contact: '7397318090' },
-                { name: 'Sai SUNDAR', contact: '9360245815' }
+                { name: 'Divainy J', contact: '80725 13973' },
+                { name: 'Dharshini R', contact: '63833 45731' }
             ],
             rules: [
                 'Team of 2 members.',
@@ -64,9 +62,8 @@ export const eventsData = {
             desc: 'Test your technical knowledge.',
             details: 'Battle of brains! Answer technical questions and prove your expertise in various engineering domains. From basics to advanced concepts.',
             coordinators: [
-                { name: 'Ashwin Singh', contact: '91763 83300' },
-                { name: 'Nithish', contact: '63834 79068' },
-                { name: 'Vimal Deep', contact: '9629791556' }
+                { name: "R kishore", contact: "63699 02036" },
+                { name: 'Vimal Deep A L', contact: '96297 91556' }
             ],
             rules: [
                 'Team of 2 members.',
@@ -82,9 +79,9 @@ export const eventsData = {
             desc: 'Showcase your innovative ideas and research.',
             details: 'Present your technical papers on cutting-edge technologies. A platform to share knowledge, innovations, and research findings with a panel of experts.',
             coordinators: [
-                { name: 'Jerauld Alwin', contact: '9498350881' },
-                { name: 'Amirtha', contact: '7871003979' },
-                { name: 'Alfred John', contact: '8610933220' }
+                { name: 'J Jerauld Alwin', contact: '94983 50881' },
+                { name: 'Jaya Sudha', contact: '63827 55248' },
+
             ],
             rules: [
                 'Maximum 3 members per team.',
@@ -100,8 +97,8 @@ export const eventsData = {
             desc: 'Visualise your technical concepts creatively.',
             details: 'Demonstrate your engineering projects and prototypes. Impress the judges with your practical implementation and innovative solutions.',
             coordinators: [
-                { name: 'Kavin Aravind', contact: '6382863773' },
-                { name: 'Sudharsan', contact: '8050024271' }
+                { name: 'Theeran K', contact: '96260 72477' },
+                { name: 'Sudharsan S', contact: '80500 24271' }
             ],
             rules: [
                 'Maximum 3 members per team.',
@@ -117,7 +114,8 @@ export const eventsData = {
             desc: 'Design complex electrical systems.',
             details: 'Showcase your CAD skills by designing electrical layouts and systems efficiently using industry-standard software.',
             coordinators: [
-                { name: 'Bragadeeshwaran', contact: '9042851602' }
+                { name: 'B Bragadeeshwaran', contact: '90428 51602' },
+                { name: "V Mathivanan", contact: "93636 14486" }
             ],
             rules: [
                 'Individual participation.',
@@ -133,7 +131,9 @@ export const eventsData = {
             desc: 'Unlock the digital mysteries.',
             details: 'Hosted by Club Celestial. A challenge of logic, coding, and problem-solving. Can you crack the code before time runs out?',
             club: 'Club Celestial',
-            coordinators: [],
+            coordinators: [{ name: "Rudra Prasad M L", contact: "80720 29917" },
+            { name: "Adhisaya", contact: "90428 70525" }
+            ],
             rules: [
                 'Team of 2 members.',
                 'Laptop required.',
@@ -146,7 +146,9 @@ export const eventsData = {
             image: electrolink,
             desc: 'Forge the connections.',
             details: 'A circuit design and linking challenge. Understand the flow, connect the components, and make the system live.',
-            coordinators: [],
+            coordinators: [{ name: "G Kavin Aravind", contact: "63828 63773" },
+            { name: "T Rajamathi", contact: "87780 03748" }
+            ],
             rules: [
                 'Team of 2 members.',
                 'Components provided.',
@@ -159,7 +161,9 @@ export const eventsData = {
             image: blackout,
             desc: 'Decode the hidden data.',
             details: 'A mystery solving event where technical clues lead to the solution. Analyze the data and find the truth in the blackout.',
-            coordinators: [],
+            coordinators: [{ name: "Roseni M", contact: " 73051 08002" },
+            { name: "Shivani Sri S", contact: "91502 04514" }
+            ],
             rules: [
                 'Team of 2-3 members.',
                 'Critical thinking required.',
@@ -174,7 +178,8 @@ export const eventsData = {
             image: photo,
             desc: 'Capture the moment.',
             details: 'Showcase your perspective through the lens. Theme-based photography contest where creativity meets composition.',
-            coordinators: [],
+            coordinators: [{ name: "Priyadharshini S", contact: "96770 74387" }
+            ],
             rules: [
                 'Individual participation.',
                 'Original photos only.',
@@ -188,7 +193,8 @@ export const eventsData = {
             image: posterDesign,
             desc: 'Design with impact.',
             details: 'Create compelling visual posters. Combine art and information to convey a powerful message.',
-            coordinators: [],
+            coordinators: [{ name: "Rasikka S", contact: "88385 59060" }
+            ],
             rules: [
                 'Individual participation.',
                 'Original designs only.',
@@ -202,7 +208,7 @@ export const eventsData = {
             image: aiVideo,
             desc: 'Generate the future.',
             details: 'Create amazing videos using AI tools. Push the boundaries of creativity with artificial intelligence.',
-            coordinators: [],
+            coordinators: [{ name: "Kasthuri S", contact: "91508 69769" }],
             rules: [
                 'Individual participation.',
                 'AI tools allowed.',
@@ -304,7 +310,7 @@ export const EventDetailsModal = ({ event, onClose }) => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-[calc(100%+30px)] -ml-[15px]">
                                 {event.coordinators.map((coord, idx) => (
                                     <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex justify-between items-center hover:border-electric-600/30 transition-colors">
-                                        <span className="font-medium text-gray-200">{coord.name}</span>
+                                        <span style={{ fontSize: '15px' }} className=" text-gray-200">{coord.name}</span>
                                         {coord.contact && (
                                             <a href={`tel:${coord.contact} `} className="flex items-center gap-1 text-xs text-electric-400 hover:text-electric-300 bg-electric-500/10 px-2 py-1 rounded">
                                                 <Phone size={12} /> {coord.contact}
